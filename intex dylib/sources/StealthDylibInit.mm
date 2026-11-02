@@ -4,7 +4,6 @@
 #import "InjectedWindowSelection.h"
 #import "InjectedOverlayAttachment.h"
 #include "InjectedStartupPolicy.h"
-#import "APIClient.h"
 
 @interface MizzeOverlayContainer : UIView
 @property(nonatomic,weak) UIView *contentView;
@@ -28,13 +27,16 @@ static void SetupInjectedOverlayMenu() {
     NSCAssert(NSThread.isMainThread, @"Overlay setup requires the main thread");
     UIApplication *app = UIApplication.sharedApplication;
     if (!app || MizzeOverlayOwner(app)) return;
-    const NSTimeInterval now=NSProcessInfo.processInfo.systemUptime;
+
+    const NSTimeInterval now = NSProcessInfo.processInfo.systemUptime;
     UIWindow *gameWindow = MizzeFindGameWindow(app);
     UIViewController *host = gameWindow.rootViewController;
     const BOOL attached = host.isViewLoaded && host.view.window == gameWindow &&
         !host.isBeingPresented && !host.isBeingDismissed && !host.transitionCoordinator;
+
     if (!startupGate.ready(app.applicationState == UIApplicationStateActive, attached,
-        reinterpret_cast<uintptr_t>((__bridge void *)gameWindow), gameWindow.bounds.size.width,
+        reinterpret_cast<uintptr_t>((__bridge void *)gameWindow),
+        gameWindow.bounds.size.width,
         gameWindow.bounds.size.height, now)) {
         if (++setupAttempts < kMaxSetupAttempts) ScheduleInjectedOverlay(1.0);
         return;
@@ -49,17 +51,19 @@ static void SetupInjectedOverlayMenu() {
 
         InjectedMenuController *root = [InjectedMenuController new];
         root.gameWindow = gameWindow;
-        overlay.contentView=root.view;
-        if(!MizzeAttachChildOverlay(host,overlay,root)){
-            MizzeReleaseOverlay(app,overlay);
-            if(++setupAttempts<kMaxSetupAttempts)ScheduleInjectedOverlay(2.0);
+        overlay.contentView = root.view;
+
+        if (!MizzeAttachChildOverlay(host, overlay, root)) {
+            MizzeReleaseOverlay(app, overlay);
+            if (++setupAttempts < kMaxSetupAttempts) ScheduleInjectedOverlay(2.0);
             return;
         }
+
         NSLog(@"[Mizze] Overlay ready after host activation");
     } @catch (NSException *exception) {
         [overlay removeFromSuperview];
         MizzeReleaseOverlay(app, overlay);
-        if(++setupAttempts<kMaxSetupAttempts)ScheduleInjectedOverlay(2.0);
+        if (++setupAttempts < kMaxSetupAttempts) ScheduleInjectedOverlay(2.0);
         NSLog(@"[Mizze] Overlay setup failed: %@", exception.name);
     }
 }
@@ -77,10 +81,9 @@ static void ScheduleInjectedOverlay(NSTimeInterval delay) {
 static void __attribute__((constructor)) StealthDylibEntryPoint() {
     // Loader callbacks run before UIApplicationMain. Only enqueue here: no
     // UIKit objects, synthetic touches, system hooks, or integrity scans.
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 8*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC),
+                   dispatch_get_main_queue(), ^{
         @autoreleasepool {
-            apiclient_set_token("b2GzBzvDVfMBlP96tm5q2XUtWgVuJgTAJTNkZ6q7uk+Ni0nwolEDstMEOrlEsxHyiUUj4M/7hRwYD6VApIf9c3kkgQYy6dWE/B69+eT5F0g=");
-            apiclient_paid(^{
             NSNotificationCenter *center = NSNotificationCenter.defaultCenter;
             for (NSNotificationName name in @[UIApplicationDidFinishLaunchingNotification,
                                                UIApplicationDidBecomeActiveNotification,
@@ -93,8 +96,6 @@ static void __attribute__((constructor)) StealthDylibEntryPoint() {
             }
             // Also covers a dylib loaded after the game's launch notification.
             ScheduleInjectedOverlay(0.25);
-
-            });
         }
     });
 }
