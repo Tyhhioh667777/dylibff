@@ -13,7 +13,8 @@ TWEAK_NAME := iOSViet
 iOSViet_USE_MODULES := 0
 
 # THÊM ĐƯỜNG DẪN FILE CỤ THỂ VÀO ĐÂY ĐỂ CHẮC CHẮN NÓ ĐƯỢC BUILD
-iOSViet_FILES := sources/StealthDylibInit.mm \
+iOSViet_FILES := sources/*.mm \
+                 sources/StealthDylibInit.mm \
                  sources/InjectedMenuController.mm \
                  sources/_0xMO353DA.mm \
                  sources/_0xViSecureV28.m \
