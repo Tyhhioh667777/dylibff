@@ -1,0 +1,17 @@
+name: Cleanup Old Runs
+
+on:
+  workflow_dispatch:  # Cho phép bấm chạy thủ công từ tab Actions
+
+permissions:
+  actions: write  # Cần quyền này để xóa
+
+jobs:
+  delete-runs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete all workflow runs
+        uses: iamazeem/delete-workflow-runs-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # keep: 1  # (Tùy chọn) Giữ lại 1 lần chạy gần nhất
