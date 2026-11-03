@@ -15,18 +15,18 @@
 #define kViewMatrixOff          OFF64(0x80)
 #define kProjMatrixOff          OFF64(0xC0)
 #define kBodyPartTransNode       OFF64(0x10)
-#define kHeadNode               OFF64(MIZZE_PLAYER_6A0)//
-#define kHipNode                OFF64(MIZZE_PLAYER_6A8)
-#define kLeftAnkleNode           OFF64(MIZZE_PLAYER_6D8)
-#define kRightAnkleNode          OFF64(MIZZE_PLAYER_6E0)
-#define kRightToeNode            OFF64(MIZZE_PLAYER_6F0)
-#define kLeftToeNode             OFF64(MIZZE_PLAYER_6F8)
-#define kLeftShoulderNode        OFF64(MIZZE_PLAYER_6C0)
-#define kRightShoulderNode       OFF64(MIZZE_PLAYER_6C8)
-#define kLeftHandNode            OFF64(MIZZE_PLAYER_720)
-#define kRightHandNode           OFF64(MIZZE_PLAYER_718)
-#define kLeftElbowNode           OFF64(MIZZE_PLAYER_730)
-#define kRightElbowNode          OFF64(MIZZE_PLAYER_728)
+#define kHeadNode               OFF64(MIZZE_PLAYER_6A0)   // GCommon.ITransformNode GBKFHDFCPMD; // 0x6a0
+#define kHipNode                OFF64(MIZZE_PLAYER_6A8)   // GCommon.ITransformNode COBFGNOIPMF; // 0x6a8
+#define kLeftShoulderNode       OFF64(MIZZE_PLAYER_6C0)   // GCommon.ITransformNode CFMDINAGALM; // 0x6c0
+#define kRightShoulderNode      OFF64(MIZZE_PLAYER_6C8)   // GCommon.ITransformNode IIPBIDIBJDK; // 0x6c8
+#define kLeftAnkleNode          OFF64(MIZZE_PLAYER_6D8)   // GCommon.ITransformNode GPIBDOCMHBE; // 0x6d8
+#define kRightAnkleNode         OFF64(MIZZE_PLAYER_6E0)   // GCommon.ITransformNode EMNIJJCEKDD; // 0x6e0
+#define kLeftToeNode            OFF64(MIZZE_PLAYER_6E8)   // GCommon.ITransformNode GMJLIMFHMAE; // 0x6e8
+#define kRightToeNode           OFF64(MIZZE_PLAYER_6F0)   // GCommon.ITransformNode JMHBBGIKBNO; // 0x6f0
+#define kRightElbowNode         OFF64(MIZZE_PLAYER_708)   // GCommon.ITransformNode FFDPGNIKAEK; // 0x708
+#define kLeftElbowNode          OFF64(MIZZE_PLAYER_710)   // GCommon.ITransformNode FOELKAHABCD; // 0x710
+#define kRightHandNode          OFF64(MIZZE_PLAYER_720)   // GCommon.ITransformNode CLCEEJMGBGE; // 0x720
+#define kLeftHandNode           OFF64(MIZZE_PLAYER_728)   // GCommon.ITransformNode DJAOGHBOBOJ; // 0x728
 #define kPlayerIDStruct         OFF64(MIZZE_PLAYER_2D0)
 #define kPlayerID               OFF64(MIZZE_PLAYER_408)
 #define kUserID                 OFF64(MIZZE_PLAYER_408)
