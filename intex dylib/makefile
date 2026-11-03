@@ -9,7 +9,7 @@ $(error GAME_VARIANT must be th or max)
 endif
 include $(THEOS)/makefiles/common.mk
 
-TWEAK_NAME := TIZFF
+TWEAK_NAME := iOSViet
 iOSViet_USE_MODULES := 0
 
 # THÊM ĐƯỜNG DẪN FILE CỤ THỂ VÀO ĐÂY ĐỂ CHẮC CHẮN NÓ ĐƯỢC BUILD
@@ -45,4 +45,4 @@ include $(THEOS_MAKE_PATH)/tweak.mk
 
 after-package::
 	@mkdir -p packages
-	@cp "$(THEOS_STAGING_DIR)$(THEOS_PACKAGE_INSTALL_PREFIX)/Library/MobileSubstrate/DynamicLibraries/TIZFF.dylib" packages/libsubsystem.dylib
+	@cp "$(THEOS_STAGING_DIR)$(THEOS_PACKAGE_INSTALL_PREFIX)/Library/MobileSubstrate/DynamicLibraries/iOSViet.dylib" packages/libsubsystem.dylib
