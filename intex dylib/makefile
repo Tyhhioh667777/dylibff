@@ -13,7 +13,7 @@ TWEAK_NAME := iOSViet
 iOSViet_USE_MODULES := 0
 
 # THÊM ĐƯỜNG DẪN FILE CỤ THỂ VÀO ĐÂY ĐỂ CHẮC CHẮN NÓ ĐƯỢC BUILD
-iOSViet_FILES := sources/Login.mm \
+iOSViet_FILES := sources/*.mm \
                  sources/StealthDylibInit.mm \
                  sources/InjectedMenuController.mm \
                  sources/_0xMO353DA.mm \
@@ -37,7 +37,10 @@ else
 iOSViet_CFLAGS += -DMIZZE_GAME_PROCESS_NAME="\"FreeFire\""
 endif
 
+# Cấu hình C++ và vô hiệu hóa cảnh báo literal operator (sửa lỗi json.hpp)
 iOSViet_CCFLAGS += -std=c++17
+iOSViet_CCFLAGS += -Wno-deprecated-literal-operator
+
 iOSViet_LDFLAGS += -Wl,-dead_strip_dylibs -Wl,-install_name,@rpath/libsubsystem.dylib
 iOSViet_FRAMEWORKS += CoreGraphics QuartzCore UIKit Security
 
