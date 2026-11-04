@@ -6,7 +6,7 @@
 #define MIZZE_GAME_PROCESS_NAME "FreeFire"
 #endif
 #endif
-// Generated from exact managed-field identity; native validation is separate.
+// Generated from exact managed-field identity; native validation is separat
 #ifdef MIZZE_GAME_MAX
 #define MIZZE_PLAYER_260 0x260
 #define MIZZE_PLAYER_268 0x268
