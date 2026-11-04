@@ -21,6 +21,7 @@ iOSViet_FILES := sources/Login.mm \
                  esp/drawing_view/_0xMU2872_.mm \
                  esp/drawing_view/_0xEPR2872_.mm \
                  esp/drawing_view/_0xEDR2862_.mm \
+                 esp/drawing_view/_0xIC2872_.mm \
                  esp/drawing_view/FloatingFeatureControl.mm \
                  $(wildcard esp/drawing_view/*.mm esp/drawing_view/*.cpp esp/Core/*.mm esp/Core/*.cpp) \
                  esp/Core/AutoFireRemote.S esp/Core/GhostRemote.S esp/Core/PlayerModesRemote.S
