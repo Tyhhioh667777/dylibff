@@ -6,7 +6,7 @@
 // 1) Nếu base64String hợp lệ → trả về ảnh từ Base64
 // 2) Nếu base64String hỏng     → trả về ảnh chứa chữ "TIZ"
 // Không log, không assert, UI dùng như cũ.
-// ============================================================
+// ========================================================
 
 #pragma mark - Decode Base64 an toàn
 
