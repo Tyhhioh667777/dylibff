@@ -7,6 +7,7 @@
 #import "MizzeMenuPrefs.h"
 #include <cmath>
 #import "../esp/Core/PlayerModes.h"
+#import "../esp/drawing_view/icons.h"   // <-- Khai báo FloatButtonIcon()
 
 // ==========================================
 // CLASS CÔNG TẮC (SWITCH) BO TRÒN
@@ -95,6 +96,8 @@
 @property (nonatomic, strong) UIControl *activeControl;
 @property (nonatomic, strong) UILabel *spinStatusLabel;
 @property (nonatomic, strong) NSTimer *spinStatusTimer;
+// Icon view trong header
+@property (nonatomic, strong) UIView *logoView;
 @end
 
 @implementation _0xDEADBEEE
@@ -150,12 +153,8 @@
     caption.tag = 11;
     [self.header addSubview:caption];
     
-    UILabel *logo = [self label:@"I" frame:CGRectMake(14, 12, 34, 34) size:23];
-    logo.tag = 13; logo.textAlignment = NSTextAlignmentCenter;
-    logo.layer.cornerRadius = 10; logo.clipsToBounds = YES;
-    logo.backgroundColor = [MizzeMint() colorWithAlphaComponent:0.15];
-    logo.textColor = MizzeMint();
-    [self.header addSubview:logo];
+    // ============ ICON THẬT TỪ FloatButtonIcon() ============
+    [self setupLogoView];
     
     UIButton *close = [UIButton buttonWithType:UIButtonTypeSystem];
     close.frame = CGRectMake(268, 10, 32, 36);
@@ -189,6 +188,40 @@
     [self buildPage];
 }
 
+// ==========================================
+// TẠO LOGO VIEW VỚI ICON THẬT
+// ==========================================
+- (void)setupLogoView {
+    UIImage *icon = FloatButtonIcon();
+    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(14, 12, 34, 34)];
+    container.tag = 13;
+    container.layer.cornerRadius = 10;
+    container.clipsToBounds = YES;
+    container.backgroundColor = [MizzeMint() colorWithAlphaComponent:0.15];
+    
+    if (icon) {
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:icon];
+        imageView.frame = container.bounds;
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.userInteractionEnabled = NO;
+        // Nếu icon là template, tô màu mint cho đồng bộ theme
+        if (icon.renderingMode == UIImageRenderingModeAlwaysTemplate) {
+            imageView.tintColor = MizzeMint();
+        }
+        [container addSubview:imageView];
+    } else {
+        // Fallback: nếu icon nil, dùng chữ "I" như cũ để không bị trống
+        UILabel *fallback = [self label:@"I" frame:container.bounds size:23];
+        fallback.textAlignment = NSTextAlignmentCenter;
+        fallback.textColor = MizzeMint();
+        [container addSubview:fallback];
+        NSLog(@"[TIZ] FloatButtonIcon() trả về nil — dùng fallback chữ I");
+    }
+    
+    self.logoView = container;
+    [self.header addSubview:container];
+}
+
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     CGFloat screenW = self.view.bounds.size.width;
@@ -216,6 +249,8 @@
     self.header.frame = CGRectMake(0, 0, w, 58);
     [self.header viewWithTag:10].frame = CGRectMake(58, 10, MAX(10, w - 116), 24);
     [self.header viewWithTag:11].frame = CGRectMake(58, 35, MAX(10, w - 116), 13);
+    // Icon view luôn giữ vị trí/kích thước
+    if (self.logoView) self.logoView.frame = CGRectMake(14, 12, 34, 34);
     
     UIView *closeBtn = [self.header viewWithTag:12];
     if (closeBtn) closeBtn.frame = CGRectMake(MAX(0.0f, w - 48.0f), 11, 36, 36);
