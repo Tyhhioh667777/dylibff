@@ -12,7 +12,7 @@ include $(THEOS)/makefiles/common.mk
 TWEAK_NAME := iOSViet
 iOSViet_USE_MODULES := 0
 
-# THÊM ĐƯỜNG DẪN FILE CỤ THỂ VÀO ĐÂY ĐỂ CHẮC CHẮN NÓ ĐƯỢC BUILD
+# THÊM ĐƯỜNG DẪN FILE CỤ THỂ VÀO ĐÂY ĐỂ CHẮC CHẮN NÓ ĐƯỢC 
 iOSViet_FILES := sources/Login.mm \
                  sources/StealthDylibInit.mm \
                  sources/InjectedMenuController.mm \
