@@ -199,7 +199,7 @@ uint64_t getHip(uint64_t player) {
 }
 
 uint64_t getRoot(uint64_t player) {
-    uint64_t BodyPart = ReadAddr<uint64_t>(player + OFF64(MIZZE_PLAYER_6C8));//protected ITransformNode MPJBGDJJJMJ; // 0x668
+    uint64_t BodyPart = ReadAddr<uint64_t>(player + OFF64(MIZZE_PLAYER_6D0));//protected ITransformNode MPJBGDJJJMJ; // 0x668
 
 
     return getTransNode(BodyPart);
