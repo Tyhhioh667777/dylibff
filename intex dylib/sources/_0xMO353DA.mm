@@ -211,7 +211,7 @@
         [container addSubview:imageView];
     } else {
         // Fallback: nếu icon nil, dùng chữ "I" như cũ để không bị trống
-        UILabel *fallback = [self label:@"I" frame:container.bounds size:23];
+        UILabel *fallback = [self label:@"TIZ" frame:container.bounds size:23];
         fallback.textAlignment = NSTextAlignmentCenter;
         fallback.textColor = MizzeMint();
         [container addSubview:fallback];
