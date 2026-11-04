@@ -108,7 +108,7 @@ static const CGFloat kMenuButtonSize = 44.0f;
     _menuButton.layer.zPosition = 999.0f;
     _menuButton.clipsToBounds = YES;
     
-    [_menuButton setTitle:@"I" forState:UIControlStateNormal];
+    [_menuButton setTitle:@"TIZ" forState:UIControlStateNormal];
     [_menuButton setTitleColor:MizzeMint() forState:UIControlStateNormal];
     _menuButton.titleLabel.font = [UIFont systemFontOfSize:27 weight:UIFontWeightMedium];
     _menuButton.titleLabel.textAlignment = NSTextAlignmentCenter;
